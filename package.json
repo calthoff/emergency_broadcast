@@ -2,6 +2,7 @@
   "name": "emergency_broadcast",
   "version": "1.0.0",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "firebase": "^9.6.3"
   }
 }
