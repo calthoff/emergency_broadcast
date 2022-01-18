@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emergency Broadcast</title>
+</head>
+<body>
+<script>
+  function success(position) {
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", '/location?lat=' + position.coords.latitude + '&long=' + position.coords.longitude);
+    xmlHttp.send();
+    return xmlHttp.responseText;
+    }
+
+ function error(){
+    console.log('error')
+ }
+
+  if(!navigator.geolocation) {
+    console.log('Geolocation is not supported by your browser');
+  } else {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+</script>
+<h2>Emergency</h2>
+<button>Natural disaster</button>
+<button>Kidnapping</button>
+<button>Robbery</button>
+<button>Other</button>
+<h2>Send an Alert!</h2>
+<button>ALERT</button>
+</body>
+</html>
