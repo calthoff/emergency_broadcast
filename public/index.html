@@ -6,22 +6,22 @@
 </head>
 <body>
 <script>
-  function success(position) {
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", '/location?lat=' + position.coords.latitude + '&long=' + position.coords.longitude);
-    xmlHttp.send();
-    return xmlHttp.responseText;
+    function success(position) {
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", '/location?lat=' + position.coords.latitude + '&long=' + position.coords.longitude);
+        xmlHttp.send();
+        return xmlHttp.responseText;
     }
 
- function error(){
-    console.log('error')
- }
+    function error(){
+        console.log('error')
+    }
 
-  if(!navigator.geolocation) {
-    console.log('Geolocation is not supported by your browser');
-  } else {
-    navigator.geolocation.getCurrentPosition(success, error);
-  }
+    if(!navigator.geolocation) {
+      console.log('Geolocation is not supported by your browser');
+    } else {
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
 </script>
 <h2>Add Contact</h2>
 <form>
@@ -36,6 +36,7 @@
     </div>
 </form>
 <h2>Your Contacts</h2>
+<p id="contacts"></p>
 <h2>Emergency</h2>
 <button>Natural disaster</button>
 <button>Kidnapping</button>
@@ -44,5 +45,28 @@
 <h2>Send an Alert!</h2>
 <button>ALERT</button>
 
+<script>
+    function add_html(contacts) {
+        console.log(contacts)
+        document.createElement("BUTTON")
+        for (const property in contacts) {
+            console.log(contacts[property]['number'])
+            document.createElement("BUTTON")
+                //.innerHTML = contacts[property]['number']
+            //console.log(contacts[property]['number']);
+        }
+    }
+    function httpGetAsync(theUrl, callback)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(JSON.parse(xmlHttp.responseText));
+        }
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous
+        xmlHttp.send(null);
+    }
+    httpGetAsync('/get/contacts', add_html)
+</script>
 </body>
 </html>
