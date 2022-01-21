@@ -51,12 +51,12 @@ app.get('/get/contacts', function(req, res){
 })
 
 app.post('/send/alert', function(req, res){
-    const long = req.query.long
-    const lat = req.query.lat
-    const numbers = req.query.numbers
-    for(let i=0; i < numbers.length; i++){
+    let long = req.body['coordinates']['long']
+    let lat = req.body['coordinates']['lat']
+    let contacts = req.body['contacts']
+    for(const property in contacts){
         vonage.channel.send(
-            { "type": "sms", "number": numbers[i] },
+            { "type": "sms", "number": contacts[property]['number']},
             { "type": "sms", "number": process.env.FROM_NUMBER},
             {
                 "content": {

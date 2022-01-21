@@ -18,27 +18,23 @@
         </div>
     </form>
     <h2>Your Contacts</h2>
-    <p id="contacts"></p>
-    <h2>Emergency</h2>
-    <button>Natural disaster</button>
-    <button>Kidnapping</button>
-    <button>Robbery</button>
-    <button>Other</button>
+    <div id="contacts"></div>>
     <h2>Send an Alert!</h2>
     <button onclick="alert_them()">ALERT</button>
 
     <script>
-        let numbers = []
+        let data = {}
 
-        function add_html(contacts) {
-            console.log(contacts)
+        function create_contacts(contacts) {
+            data['contacts'] = contacts
             document.createElement("BUTTON")
             for (const property in contacts) {
-                numbers.push(property['number'])
-                console.log(contacts[property]['number'])
-                document.createElement("BUTTON")
-                    //.innerHTML = contacts[property]['number']
-                //console.log(contacts[property]['number']);
+                const newDiv = document.createElement("div");
+                const newContent = document.createTextNode(property);
+                newDiv.appendChild(newContent);
+                // add the newly created element and its content into the DOM
+                const currentDiv = document.getElementById("contacts");
+                document.body.insertBefore(newDiv, currentDiv);
             }
         }
 
@@ -52,22 +48,23 @@
             xmlHttp.send(null);
         }
 
-        httpPostAsync('/get/contacts', add_html)
+        httpPostAsync('/get/contacts', create_contacts)
 
-        function success(position) {
-            numbers.push(position.coords.latitude)
-            numbers.push(position.coords.longitude)
-            let xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("POST", '/send/alert', true);
-            xmlHttp.setRequestHeader("Content-Type", "application/json");
-            xmlHttp.send(JSON.stringify(numbers));
-        }
-
-        function error(){
-            console.log('error')
-        }
 
         function alert_them(){
+            function success(position) {
+                data['coordinates'] = {}
+                data['coordinates']['lat'] = position.coords.latitude
+                data['coordinates']['long'] = position.coords.longitude
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("POST", '/send/alert', true);
+                xmlHttp.setRequestHeader("Content-Type", "application/json");
+                xmlHttp.send(JSON.stringify(data));
+            }
+
+            function error(){
+                console.log('error')
+            }
             if(!navigator.geolocation) {
                 console.log('Geolocation is not supported by your browser');
             } else {
