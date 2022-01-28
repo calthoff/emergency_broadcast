@@ -25,6 +25,7 @@
 
     <script>
         let data = {}
+        httpPostAsync('/contacts', create_contacts)
 
         function create_contacts(contacts) {
             data['contacts'] = []
@@ -50,9 +51,6 @@
             xmlHttp.open("GET", theUrl, true); // true for asynchronous
             xmlHttp.send(null);
         }
-
-        httpPostAsync('/contacts', create_contacts)
-
 
         function alert_them(){
             function success(position) {
