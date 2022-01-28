@@ -2,7 +2,12 @@
   "name": "emergency_broadcast",
   "version": "1.0.0",
   "dependencies": {
+    "@vonage/server-sdk": "^2.10.7-beta-2",
+    "body-parser": "^1.19.1",
+    "dotenv": "^14.3.2",
     "express": "^4.17.2",
-    "firebase": "^9.6.3"
+    "firebase": "^9.6.4",
+    "mongodb": "^4.3.1",
+    "mongoose": "^6.1.8"
   }
 }

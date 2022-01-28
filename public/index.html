@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Emergency Broadcast</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Add Contact</h2>
-    <form>
+    <h1 id="top">Add Contact</h1>
+    <form action="/contacts" method="POST">
         <div>
-            <label for="name">Name</label> <br>
-            <input id="name" type="text" name="text"> <br>
-            <label for="number">Number</label> <br>
-            <input id="number" type="text" name="text">
+            <input id="name" class="forms" type="text" name="name" placeholder="name"> <br>
+            <input id="number" class="forms" type="text" name="number" placeholder="number">
         </div>
         <div>
-            <input type="submit" value="Send">
+            <input type="submit" value="Add" class="tons" id="add">
         </div>
     </form>
-    <h2>Your Contacts</h2>
-    <div id="contacts"></div>>
-    <h2>Send an Alert!</h2>
-    <button onclick="alert_them()">ALERT</button>
+    <br> <br>
+    <h1>Your Contacts</h1>
+    <div></div>
+    <div id="contacts"></div>
+    <br> <br>
+    <button onclick="alert_them()" class="tons" id="alert">ALERT</button>
 
     <script>
         let data = {}
 
         function create_contacts(contacts) {
-            data['contacts'] = contacts
-            document.createElement("BUTTON")
-            for (const property in contacts) {
+            data['contacts'] = []
+            for (let i = 0; i < contacts.length; i++) {
+                let contact = contacts[i]
+                data['contacts'].push(contact)
                 const newDiv = document.createElement("div");
-                const newContent = document.createTextNode(property);
+                newDiv.className = 'left'
+                const newContent = document.createTextNode(contact.name);
                 newDiv.appendChild(newContent);
                 // add the newly created element and its content into the DOM
                 const currentDiv = document.getElementById("contacts");
@@ -39,7 +42,7 @@
         }
 
         function httpPostAsync(theUrl, callback) {
-            var xmlHttp = new XMLHttpRequest();
+            let xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange = function() {
                 if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
                     callback(JSON.parse(xmlHttp.responseText));
@@ -48,7 +51,7 @@
             xmlHttp.send(null);
         }
 
-        httpPostAsync('/get/contacts', create_contacts)
+        httpPostAsync('/contacts', create_contacts)
 
 
         function alert_them(){
@@ -57,7 +60,7 @@
                 data['coordinates']['lat'] = position.coords.latitude
                 data['coordinates']['long'] = position.coords.longitude
                 let xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("POST", '/send/alert', true);
+                xmlHttp.open("POST", '/alert', true);
                 xmlHttp.setRequestHeader("Content-Type", "application/json");
                 xmlHttp.send(JSON.stringify(data));
             }
