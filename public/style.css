@@ -3,9 +3,7 @@ body {
     text-align: center
 }
 
-#number{
-    margin-top: 1em;
-}
+h1 { color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 30px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
 
 .forms{
     height: 2.5em;
@@ -40,18 +38,31 @@ body {
 
 #alert {
     margin-bottom: 5em;
+    margin-top:1em;
     background-color:red;
+}
+
+#alert:hover {
+    background-color: black;
 }
 
 #add{
     background-color:black;
 }
 
+#add:hover {
+    background-color: pink;
+}
+
 #top{
     margin-top: 5em;
+    margin-bottom: 1.5em;
 }
 
-.left{
+.cons{
+    font-size: 22px;
 }
 
-h1 { color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 30px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
+#number{
+    margin-top: 1em;
+}
