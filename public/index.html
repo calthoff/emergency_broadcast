@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <title>Emergency Broadcast</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet' href='style.css'>
 </head>
 <body>
-    <h1 id="top">Add Contact</h1>
-    <form action="/contacts" method="POST">
+    <h1 id='top'>Add Contact</h1>
+    <form action='/contacts' method='POST'>
         <div>
-            <input id="name" class="forms" type="text" name="name" placeholder="name"> <br>
-            <input id="number" class="forms" type="text" name="number" placeholder="number">
+            <input id='name' class='forms' type='text' name='name' placeholder='name'> <br>
+            <input id='number' class='forms' type='text' name='number' placeholder='number'>
         </div>
         <div>
-            <input type="submit" value="Add" class="tons" id="add">
+            <input type='submit' value='Add' class='tons' id='add'>
         </div>
     </form>
     <br> <br>
     <h1>Your Contacts</h1>
     <div></div>
-    <div id="contacts"></div>
-    <button onclick="alert_them()" class="tons" id="alert">ALERT</button>
+    <div id='contacts'></div>
+    <button onclick='alert_them()' class='tons' id='alert'>ALERT</button>
 
     <script>
         let data = {}
@@ -31,11 +31,11 @@
             for (let i = 0; i < contacts.length; i++) {
                 let contact = contacts[i]
                 data['contacts'].push(contact)
-                const newDiv = document.createElement("div");
+                const newDiv = document.createElement('div');
                 newDiv.className = 'cons'
                 const newContent = document.createTextNode(contact.name);
                 newDiv.appendChild(newContent);
-                const currentDiv = document.getElementById("contacts");
+                const currentDiv = document.getElementById('contacts');
                 document.body.insertBefore(newDiv, currentDiv);
             }
         }
@@ -44,10 +44,10 @@
             let xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange = function() {
                 if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-                    callback(JSON.parse(xmlHttp.responseText));
+                    callback(JSON.parse(xmlHttp.responseText))
             }
-            xmlHttp.open("GET", theUrl, true); // true for asynchronous
-            xmlHttp.send(null);
+            xmlHttp.open('GET', theUrl, true)
+            xmlHttp.send(null)
         }
 
         function alert_them(){
@@ -55,11 +55,11 @@
                 data['coordinates'] = {}
                 data['coordinates']['lat'] = position.coords.latitude
                 data['coordinates']['long'] = position.coords.longitude
-                let xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("POST", '/alert', true);
-                xmlHttp.setRequestHeader("Content-Type", "application/json");
+                let xmlHttp = new XMLHttpRequest()
+                xmlHttp.open('POST', '/alert', true)
+                xmlHttp.setRequestHeader('Content-Type", "application/json');
                 xmlHttp.send(JSON.stringify(data));
-                alert("Message Sent!");
+                alert('Message Sent!')
             }
 
             function error(){
