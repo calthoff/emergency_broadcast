@@ -47,7 +47,7 @@
                     callback(JSON.parse(xmlHttp.responseText))
             }
             xmlHttp.open('GET', theUrl, true)
-            xmlHttp.send(null)
+            xmlHttp.send()
         }
 
         function alert_them() {
