@@ -31,17 +31,17 @@
             for (let i = 0; i < contacts.length; i++) {
                 let contact = contacts[i]
                 data['contacts'].push(contact)
-                const newDiv = document.createElement('div');
-                newDiv.className = 'cons'
-                const newContent = document.createTextNode(contact.name);
-                newDiv.appendChild(newContent);
-                const currentDiv = document.getElementById('contacts');
-                document.body.insertBefore(newDiv, currentDiv);
+                const newDiv = document.createElement('div')
+                newDiv.className = 'left'
+                const newContent = document.createTextNode(contact.name)
+                newDiv.appendChild(newContent)
+                const currentDiv = document.getElementById('contacts')
+                document.body.insertBefore(newDiv, currentDiv)
             }
         }
 
         function httpPostAsync(theUrl, callback) {
-            let xmlHttp = new XMLHttpRequest();
+            let xmlHttp = new XMLHttpRequest()
             xmlHttp.onreadystatechange = function() {
                 if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
                     callback(JSON.parse(xmlHttp.responseText))
@@ -50,25 +50,25 @@
             xmlHttp.send(null)
         }
 
-        function alert_them(){
+        function alert_them() {
             function success(position) {
                 data['coordinates'] = {}
-                data['coordinates']['lat'] = position.coords.latitude
-                data['coordinates']['long'] = position.coords.longitude
+                data['coordinates'] = position.coords.latitude
+                data['coordinates'] = position.coords.longitude
                 let xmlHttp = new XMLHttpRequest()
                 xmlHttp.open('POST', '/alert', true)
-                xmlHttp.setRequestHeader('Content-Type", "application/json');
-                xmlHttp.send(JSON.stringify(data));
+                xmlHttp.setRequestHeader('Content-Type', 'application/json')
+                xmlHttp.send(JSON.stringify(data))
                 alert('Message Sent!')
             }
 
-            function error(){
+            function error() {
                 console.log('error')
             }
-            if(!navigator.geolocation) {
-                console.log('Geolocation is not supported by your browser');
+            if (!navigator.geolocation) {
+                console.log('Geolocation is not supported by your browser')
             } else {
-                navigator.geolocation.getCurrentPosition(success, error);
+                navigator.geolocation.getCurrentPosition(success, error)
             }
         }
     </script>

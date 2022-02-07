@@ -46,7 +46,7 @@ h1 { color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 30px; fo
     background-color: black;
 }
 
-#add{
+#add {
     background-color:black;
 }
 
@@ -54,15 +54,15 @@ h1 { color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 30px; fo
     background-color: pink;
 }
 
-#top{
+#top {
     margin-top: 5em;
     margin-bottom: 1.5em;
 }
 
-.cons{
+.cons {
     font-size: 22px;
 }
 
-#number{
+#number {
     margin-top: 1em;
 }
