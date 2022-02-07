@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(express.static('public'))
-// 'mongodb+srv://coryalthoff:rKr3SG9d9hqLnLVB@cluster0.uostk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority\''
+
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
