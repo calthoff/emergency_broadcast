@@ -6,21 +6,21 @@
     <link rel='stylesheet' href='style.css'>
 </head>
 <body>
-    <h1 id='top'>Add Contact</h1>
-    <form action='/contacts' method='POST'>
-        <div>
-            <input id='name' class='forms' type='text' name='name' placeholder='name'> <br>
-            <input id='number' class='forms' type='text' name='number' placeholder='number'>
-        </div>
-        <div>
-            <input type='submit' value='Add' class='tons' id='add'>
-        </div>
-    </form>
-    <br> <br>
-    <h1>Your Contacts</h1>
-    <div></div>
-    <div id='contacts'></div>
-    <button onclick='alert_them()' class='tons' id='alert'>ALERT</button>
+<h1 id='top'>Add Contact</h1>
+<form action='/contacts' method='POST'>
+    <div>
+        <input id='name' class='forms' type='text' name='name' placeholder='name'> <br>
+        <input id='number' class='forms' type='text' name='number' placeholder='number'>
+    </div>
+    <div>
+        <input type='submit' value='Add' class='tons' id='add'>
+    </div>
+</form>
+<br> <br>
+<h1>Your Contacts</h1>
+<div></div>
+<div id='contacts'></div>
+<button onclick='alert_them()' class='tons' id='alert'>ALERT</button>
 
     <script>
         let data = {}
